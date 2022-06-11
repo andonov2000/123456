@@ -68,7 +68,7 @@ module.exports = (Plugin) =>
 
         if (!this.config.disable_ascii) {
           lines.push(
-            "** GSERVERS.EU | Ново поколение хостинг! **"
+            "🚀 GSERVERS.EU | Гейм хостинг от ново поколение!"
           );
         }
 
@@ -156,7 +156,7 @@ module.exports = (Plugin) =>
             const g = await this.client.guilds.fetch(guild.id);
             const embed = new MessageEmbed()
               .setColor(guild.colour)
-              .setTitle(`Вашият тикет е затворен!\nБлагодарим Ви, че се свързайте с нас!\nАко имате допълнителни въпроси, може да създадете нов тикет от <#984241663520174181>\n`)
+              .setTitle(`Вашият тикет е затворен.\nБлагодарим Ви, че се свързайте с нас!\n`)
               .addField("Тикет ID", `\`${ticket.number}\` (#${channel_name})`, true)
               .addField("Отдел", `${category.name || "?"}`, true)
               .addField("Създаден от", `<@${ticket.creator}>`, true)
@@ -228,7 +228,7 @@ module.exports = (Plugin) =>
               });
               embed.addField(
                 "Транскрипция",
-                `*Директна транскрипция* - [here](${haste})`,
+                `*Директна транскрипция* - [виж тук](${haste})`,
                 true
               );
                tempMap.set("transcript", { embeds: [embed] });
