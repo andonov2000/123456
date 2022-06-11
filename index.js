@@ -160,7 +160,7 @@ module.exports = (Plugin) =>
               .setColor(guild.colour)
               .setTitle(`Ticket Closed`)
               .addField("ID", `\`${ticket.number}\` (#${channel_name})`, true)
-              .addField("Category", `${category.name || "?"}`, true)
+              .addField("Отдел", `${category.name || "?"}`, true)
               .addField("Creator", `<@${ticket.creator}>`, true)
               .addField(
                 "Created (opened) at",
