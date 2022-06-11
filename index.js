@@ -157,7 +157,7 @@ module.exports = (Plugin) =>
             const embed = new MessageEmbed()
               .setColor(guild.colour)
               .setTitle(`Вашият тикет е затворен.`)
-	      .addDescription(`Благодарим Ви, че се свързахте с нас!Ако имате допълнително въпроси, създайте нов тикет.`)
+	      .setDescription(`Благодарим Ви, че се свързахте с нас!Ако имате допълнително въпроси, създайте нов тикет.`)
               .addField("Тикет ID", `\`${ticket.number}\` (#${channel_name})`, true)
               .addField("Отдел", `${category.name || "?"}`, true)
               .addField("Създаден от", `<@${ticket.creator}>`, true)
