@@ -229,7 +229,7 @@ module.exports = (Plugin) =>
               });
               embed.addField(
                 "Транскрипция",
-                `*Директна транскрипция* - [тук](${haste})`,
+                `*Директна транскрипция* - [here](${haste})`,
                 true
               );
                tempMap.set("transcript", { embeds: [embed] });
