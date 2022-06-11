@@ -77,17 +77,15 @@ module.exports = (Plugin) =>
         }
 
         lines.push(
-          `Ticket Transcripts plugin v${
-            require("./package.json").version
-          } by AnonDev (https://anon.is-a.dev)\n-----------------------------------------------------------------------------------\nID: ${
+          `Директна транскрипция\n-----------------------------------------------------------------------------------\nТикет ID: ${
             ticket.number
-          } (#${channel_name})\nCategory: ${
+          } (#${channel_name})\nОтдел: ${
             category.name || "?"
-          }\nCreated (opened) by: ${this.client.cryptr.decrypt(
+          }\nСъздаден от: ${this.client.cryptr.decrypt(
             creator.username
           )}#${creator.discriminator} (${
             ticket.creator || "?"
-          })\nCreated (opened) at: ${ticketCreatedAt}`
+          })\nСъздаден на: ${ticketCreatedAt}`
         );
         if (ticket.closed_by) {
           closer = await this.client.db.models.UserEntity.findOne({
@@ -103,9 +101,9 @@ module.exports = (Plugin) =>
           true
         );
         if (ticket.topic) {
-          lines.push(`Topic: ${this.client.cryptr.decrypt(ticket.topic)}`);
+          lines.push(`Тема: ${this.client.cryptr.decrypt(ticket.topic)}`);
         }
-        lines.push(`Closed at: ${ticketClosedAt}`);
+        lines.push(`Затворен на: ${ticketClosedAt}`);
         if (closer) {
           lines.push(
             `Closed by: ${this.client.cryptr.decrypt(closer.username)}#${
@@ -115,7 +113,7 @@ module.exports = (Plugin) =>
         }
         if (ticket.closed_reason) {
           lines.push(
-            `Close reason: ${this.client.cryptr.decrypt(ticket.closed_reason)}`
+            `Причина: ${this.client.cryptr.decrypt(ticket.closed_reason)}`
           );
         }
 
@@ -162,12 +160,13 @@ module.exports = (Plugin) =>
             const g = await this.client.guilds.fetch(guild.id);
             const embed = new MessageEmbed()
               .setColor(guild.colour)
-              .setTitle(`Ticket Closed`)
-              .addField("ID", `\`${ticket.number}\` (#${channel_name})`, true)
+              .setTitle(`Вашият тикет е затворен!`)
+	      .addField("Благодарим Ви, че се свързайте с нас!\nАко имате допълнителни въпроси, може да създадете нов тикет от <#984241663520174181>\n")
+              .addField("Тикет ID", `\`${ticket.number}\` (#${channel_name})`, true)
               .addField("Отдел", `${category.name || "?"}`, true)
-              .addField("Creator", `<@${ticket.creator}>`, true)
+              .addField("Създаден от", `<@${ticket.creator}>`, true)
               .addField(
-                "Created (opened) at",
+                "Създаден на",
                 `<t:${moment(new Date(ticket.createdAt)).format("X")}:f>`,
                 true
               )
@@ -177,13 +176,13 @@ module.exports = (Plugin) =>
 
             if (ticket.topic) {
               embed.addField(
-                "Topic",
+                "Тема",
                 `\`${this.client.cryptr.decrypt(ticket.topic)}\``,
                 true
               );
             }
             embed.addField(
-              "Closed at",
+              "Затворен на",
               `<t:${moment(new Date(ticket.updatedAt)).format("X")}:f>`,
               true
             );
@@ -193,7 +192,7 @@ module.exports = (Plugin) =>
             }
             if (ticket.closed_reason) {
               embed.addField(
-                "Close reason",
+                "Причина",
                 `\`${this.client.cryptr.decrypt(ticket.closed_reason)}\``,
                 true
               );
@@ -233,8 +232,8 @@ module.exports = (Plugin) =>
                 embed.addField(":x: Error", `Error while uploading transcript to Hastebin: \`${err.message}\``)
               });
               embed.addField(
-                "Transcript",
-                `*Uploaded to Hastebin* - [here](${haste})`,
+                "Транскрипция",
+                `*Директна транскрипция* - [тук](${haste})`,
                 true
               );
                tempMap.set("transcript", { embeds: [embed] });
