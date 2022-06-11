@@ -73,7 +73,7 @@ module.exports = (Plugin) =>
         }
 
         lines.push(
-          `Директна транскрипция\n-----------------------------------------------------------------------------------\nТикет ID: ${
+          `Tранскрипция\n-----------------------------------------------------------------------------------\nТикет ID: ${
             ticket.number
           } (#${channel_name})\nОтдел: ${
             category.name || "?"
@@ -154,7 +154,7 @@ module.exports = (Plugin) =>
         if (this.config.channels[guild.id]) {
           try {
             const g = await this.client.guilds.fetch(guild.id);
-            const embed = new MessageEmbed("**Ако имате допълнително въпроси, създайте нов тикет.**")
+            const embed = new MessageEmbed(`**Ако имате допълнително въпроси, създайте нов тикет.**`)
               .setColor(guild.colour)
               .setTitle(`Вашият тикет е затворен.\nБлагодарим Ви, че се свързайте с нас!\n`)
               .addField("Тикет ID", `\`${ticket.number}\` (#${channel_name})`, true)
