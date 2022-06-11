@@ -154,14 +154,15 @@ module.exports = (Plugin) =>
         if (this.config.channels[guild.id]) {
           try {
             const g = await this.client.guilds.fetch(guild.id);
-            const embed = new MessageEmbed(`**Ако имате допълнително въпроси, създайте нов тикет.**`)
+            const embed = new MessageEmbed()
               .setColor(guild.colour)
-              .setTitle(`Вашият тикет е затворен.\nБлагодарим Ви, че се свързайте с нас!\n`)
+              .setTitle(`Вашият тикет е затворен.\nБлагодатим Ви, че се свързахте с нас! Ако имате допълнително въпроси, създайте нов тикет.\n`)
+	      .addField("Тикет ID", `\`${ticket.number}\` (#${channel_name})`, true)
               .addField("Тикет ID", `\`${ticket.number}\` (#${channel_name})`, true)
               .addField("Отдел", `${category.name || "?"}`, true)
               .addField("Създаден от", `<@${ticket.creator}>`, true)
               .addField(
-                "Създаден на",
+                "Начало",
                 `<t:${moment(new Date(ticket.createdAt)).format("X")}:f>`,
                 true
               )
@@ -177,7 +178,7 @@ module.exports = (Plugin) =>
               );
             }
             embed.addField(
-              "Затворен на",
+              "Край",
               `<t:${moment(new Date(ticket.updatedAt)).format("X")}:f>`,
               true
             );
