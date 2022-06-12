@@ -169,7 +169,12 @@ module.exports = (Plugin) =>
               .setTimestamp()
               .setFooter(guild.footer, g.iconURL());
 
-
+            embed.addField(
+              "Край",
+              `<t:${moment(new Date(ticket.updatedAt)).format("X")}:f>`,
+              true
+            );
+		  
             if (ticket.topic) {
               embed.addField(
                 "Тема",
@@ -177,11 +182,6 @@ module.exports = (Plugin) =>
                 true
               );
             }
-            embed.addField(
-              "Край",
-              `<t:${moment(new Date(ticket.updatedAt)).format("X")}:f>`,
-              true
-            );
 
             if (closer) {
               embed.addField("Closed by", `<@${ticket.closed_by}>`, true);
@@ -229,7 +229,7 @@ module.exports = (Plugin) =>
               });
               embed.addField(
                 "Транскрипция",
-                `*Транскрипция* - [тук](${haste})`,
+                `*[Дирекрна транскрипция]*(${haste})`,
                 true
               );
                tempMap.set("transcript", { embeds: [embed] });
